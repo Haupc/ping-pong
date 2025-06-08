@@ -41,8 +41,8 @@ func RunE(cmd *cobra.Command, _ []string) error {
 
 	for log := range eventChan {
 		pong, _ := pingParser.ParsePong(log)
-		createdTime := time.UnixMicro(int64(pong.CreatedTimestamp.Uint64()))
-		mineTime := time.UnixMicro(int64(pong.BlockTimestamp.Uint64() * 1000))
+		createdTime := time.UnixMilli(int64(pong.CreatedTimestamp.Uint64()))
+		mineTime := time.Unix(int64(pong.BlockTimestamp.Uint64()), 0)
 		now := time.Now()
 		ConsumedPong = append(ConsumedPong, PingPongLog{
 			CreatedToMineDuration:    mineTime.Sub(createdTime),

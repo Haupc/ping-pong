@@ -51,7 +51,7 @@ func runPing(pk *ecdsa.PrivateKey) {
 
 		now := time.Now()
 		log.Printf("Sending ping at %s", now.Format(time.RFC3339))
-		_, err := pingContract.Ping(txOpts, big.NewInt(now.UnixMicro()))
+		_, err := pingContract.Ping(txOpts, big.NewInt(now.UnixMilli()))
 		if err != nil {
 			log.Fatal(err)
 		}
